@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>METRO Нерухомість — Знайдемо вашу квартиру</title>
+  <meta name="description" content="METRO Нерухомість — преміальне агентство нерухомості. Купівля, продаж, оренда квартир у Києві. Безкоштовна консультація." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --charcoal:   #1a1a2e;
+      --charcoal80: rgba(26,26,46,.8);
+      --gold:       #c9a84c;
+      --gold-light: #e0c06a;
+      --gold-dim:   rgba(201,168,76,.15);
+      --white:      #ffffff;
+      --off-white:  #f8f7f4;
+      --muted:      #6b6b7b;
+      --border:     #e8e6e0;
+
+      --font-head: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --radius-sm:  8px;
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --shadow-card: 0 4px 24px rgba(26,26,46,.08);
+      --shadow-hover: 0 12px 40px rgba(26,26,46,.16);
+      --transition: 220ms ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--charcoal);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Utility ───────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: 16px;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav__logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--charcoal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav__logo-mark svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav__logo-text {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      letter-spacing: -.01em;
+    }
+
+    .nav__logo-text span {
+      color: var(--gold);
+    }
+
+    .nav__links {
+      display: none;
+      gap: 32px;
+      list-style: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav__links { display: flex; }
+    }
+
+    .nav__links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover {
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--charcoal);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .8125rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      text-decoration: none;
+    }
+
+    .nav__cta:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      background: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    /* Decorative background grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Gold glow orb */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      padding-block: 80px 60px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      margin-bottom: 28px;
+    }
+
+    .hero__eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(.85); }
+    }
+
+    .hero__eyebrow-text {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero__title {
+      font-family: var(--font-head);
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -.03em;
+      margin-bottom: 20px;
+      max-width: 820px;
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(.9375rem, 2vw, 1.125rem);
+      font-weight: 400;
+      color: rgba(255,255,255,.65);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: .9375rem;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: rgba(255,255,255,.85);
+      font-family: var(--font-body);
+      font-size: .9375rem;
+      font-weight: 600;
+      padding: 16px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,.25);
+      transition: border-color var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero__trust {
+      margin-top: 64px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero__trust-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255,255,255,.15);
+    }
+
+    .hero__trust-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero__trust-num {
+      font-family: var(--font-head);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero__trust-label {
+      font-size: .75rem;
+      color: rgba(255,255,255,.5);
+      margin-top: 2px;
+      letter-spacing: .04em;
+    }
+
+    /* ─── SERVICES ──────────────────────────────────────────────── */
+    .services {
+      padding-block: 96px;
+      background: var(--off-white);
+    }
+
+    .services__head {
+      margin-bottom: 56px;
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 540px) {
+      .services__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .services__grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(201,168,76,.3);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--gold-dim);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-card__icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--gold);
+      stroke: var(--gold);
+    }
+
+    .service-card__title {
+      font-family: var(--font-head);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .service-card__desc {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── STATS ─────────────────────────────────────────────────── */
+    .stats {
+      padding-block: 80px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .stats__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+      .stats__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 8px;
+    }
+
+    .stat-item__num {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .stat-item__label {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.7);
+      margin-top: 12px;
+    }
+
+    .stat-item__divider {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .stats__grid {
+        position: relative;
+      }
+      .stats__grid .stat-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        width: 1px;
+        height: 64px;
+        background: rgba(255,255,255,.1);
+      }
+    }
+
+    /* ─── LISTINGS ──────────────────────────────────────────────── */
+    .listings {
+      padding-block: 96px;
+      background: var(--white);
+    }
+
+    .listings__head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .listings__link {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: gap var(--transition);
+    }
+
+    .listings__link:hover {
+      gap: 10px;
+    }
+
+    .listings__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .listings__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 960px) {
+      .listings__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .listing-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .listing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .listing-card__img {
+      height: 220px;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Property illustration using pure CSS */
+    .listing-card:nth-child(1) .listing-card__img {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d52 100%);
+    }
+    .listing-card:nth-child(2) .listing-card__img {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    }
+    .listing-card:nth-child(3) .listing-card__img {
+      background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%);
+    }
+
+    .listing-card__building {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .listing-card__badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    .listing-card__body {
+      padding: 24px;
+    }
+
+    .listing-card__type {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .listing-card__title {
+      font-family: var(--font-head);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .listing-card__meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .listing-card__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8125rem;
+      color: var(--muted);
+    }
+
+    .listing-card__meta-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .listing-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .listing-card__price {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .listing-card__price span {
+      font-size: .8125rem;
+      font-weight: 400;
+      color: var(--muted);
+      font-family: var(--font-body);
+    }
+
+    .listing-card__btn {
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--gold);
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .listing-card__btn:hover { color: var(--charcoal); }
+
+    /* Building SVG illustrations */
+    .building-svg {
+      opacity: .85;
+    }
+
+    /* ─── AGENTS ────────────────────────────────────────────────── */
+    .agents {
+      padding-block: 96px;
+      background: var(--off-white);
+    }
+
+    .agents__head {
+      margin-bottom: 48px;
+    }
+
+    .agents__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .agents__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 900px) {
+      .agents__grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 760px;
+      }
+    }
+
+    .agent-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .agent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .agent-card__avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .agent-card__avatar svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .agent-card__info {
+      flex: 1;
+    }
+
+    .agent-card__name {
+      font-family: var(--font-head);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .agent-card__spec {
+      font-size: .8125rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .agent-card__bio {
+      font-size: .8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .agent-card__stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .agent-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agent-stat__num {
+      font-family: var(--font-head);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+
+    .agent-stat__label {
+      font-size: .6875rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ─── CTA SECTION ───────────────────────────────────────────── */
+    .cta-section {
+      padding-block: 96px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .cta-section__inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    .cta-section__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
+    }
+
+    .cta-section__badge-text {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .cta-section__title {
+      font-family: var(--font-head);
+      font-size: clamp(1.875rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      margin-bottom: 16px;
+    }
+
+    .cta-section__title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .cta-section__sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .cta-section__promise {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .promise-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .875rem;
+      color: rgba(255,255,255,.75);
+    }
+
+    .promise-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .cta-section__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: none;
+      text-decoration: none;
+    }
+
+    .cta-section__btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(201,168,76,.4);
+    }
+
+    .cta-section__btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cta-section__note {
+      margin-top: 20px;
+      font-size: .8125rem;
+      color: rgba(255,255,255,.4);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    .footer {
+      background: #111120;
+      padding-block: 56px 32px;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .footer__top { grid-template-columns: 2fr 1fr 1fr; }
+    }
+
+    .footer__logo-block .nav__logo-text {
+      color: var(--white);
+      font-size: 1.125rem;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer__desc {
+      font-size: .875rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer__col-title {
+      font-family: var(--font-head);
+      font-size: .875rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: .04em;
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: .875rem;
+      color: rgba(255,255,255,.45);
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+
+    .footer__links a:hover {
+      color: var(--gold);
+    }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .875rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 10px;
+    }
+
+    .footer__contact-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: .8125rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    .footer__badge {
+      font-size: .8125rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    .footer__badge span {
+      color: var(--gold);
+    }
+
+    /* ─── SCROLL TO TOP ─────────────────────────────────────────── */
+    .scroll-top {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      z-index: 90;
+      transition: background var(--transition), transform var(--transition);
+      text-decoration: none;
+    }
+
+    .scroll-top:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+    }
+
+    .scroll-top svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--charcoal);
+    }
+
+    /* ─── SECTION SPACING MOBILE ───────────────────────────────── */
+    @media (max-width: 540px) {
+      .services, .listings, .agents, .cta-section, .stats {
+        padding-block: 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <div class="container">
+      <nav class="nav__inner" aria-label="Головна навігація">
+        <a href="#hero" class="nav__logo" aria-label="METRO Нерухомість — головна">
+          <div class="nav__logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 21V10L12 3L21 10V21" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 21V15H15V21" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="nav__logo-text">METRO <span>Нерухомість</span></span>
+        </a>
+
+        <ul class="nav__links">
+          <li><a href="#services">Послуги</a></li>
+          <li><a href="#listings">Об'єкти</a></li>
+          <li><a href="#agents">Агенти</a></li>
+          <li><a href="#cta">Контакти</a></li>
+        </ul>
+
+        <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="nav__cta" aria-label="Написати в Telegram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Telegram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-label="Головний банер">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__eyebrow" aria-hidden="true">
+          <span class="hero__eyebrow-dot"></span>
+          <span class="hero__eyebrow-text">Преміальна нерухомість Києва</span>
+        </div>
+
+        <h1 class="hero__title">
+          METRO Нерухомість —<br/>
+          знайдемо вашу <em>квартиру</em>
+        </h1>
+
+        <p class="hero__subtitle">
+          Купівля, продаж та оренда нерухомості з повним супроводом угоди. Без прихованих комісій — тільки результат.
+        </p>
+
+        <div class="hero__actions">
+          <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Безкоштовна консультація
+          </a>
+          <a href="#listings" class="btn-outline">
+            Переглянути об'єкти
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero__trust" aria-label="Ключові показники">
+          <div class="hero__trust-item">
+            <span class="hero__trust-num">500+</span>
+            <span class="hero__trust-label">угод завершено</span>
+          </div>
+          <div class="hero__trust-divider" aria-hidden="true"></div>
+          <div class="hero__trust-item">
+            <span class="hero__trust-num">8 років</span>
+            <span class="hero__trust-label">на ринку</span>
+          </div>
+          <div class="hero__trust-divider" aria-hidden="true"></div>
+          <div class="hero__trust-item">
+            <span class="hero__trust-num">97%</span>
+            <span class="hero__trust-label">задоволених клієнтів</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services__head">
+        <span class="section-label" aria-hidden="true">Що ми робимо</span>
+        <h2 class="section-title" id="services-title">Повний спектр<br/>послуг з нерухомості</h2>
+        <span class="gold-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="services__grid">
+
+        <!-- Купівля -->
+        <article class="service-card" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 21V10L12 3L21 10V21" stroke="#c9a84c" stroke-width="1.75"/>
+              <path d="M9 21V15H15V21" stroke="#c9a84c" stroke-width="1.75"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Купівля</h3>
+          <p class="service-card__desc">Підберемо квартиру під ваш бюджет і побажання. Перевіримо юридичну чистоту та супроводимо угоду до ключів.</p>
+        </article>
+
+        <!-- Продаж -->
+        <article class="service-card" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" y1="1" x2="12" y2="23" stroke="#c9a84c" stroke-width="1.75"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#c9a84c" stroke-width="1.75"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Продаж</h3>
+          <p class="service-card__desc">Оцінимо ринкову вартість, розмістимо рекламу та знайдемо покупця за максимальною ціною у стислі терміни.</p>
+        </article>
+
+        <!-- Оренда -->
+        <article class="service-card" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="3" width="15" height="13" rx="2" stroke="#c9a84c" stroke-width="1.75"/>
+              <path d="M16 8h5l3 3v5h-8V8z" stroke="#c9a84c" stroke-width="1.75"/>
+              <circle cx="5.5" cy="18.5" r="2.5" stroke="#c9a84c" stroke-width="1.75"/>
+              <circle cx="18.5" cy="18.5" r="2.5" stroke="#c9a84c" stroke-width="1.75"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Оренда</h3>
+          <p class="service-card__desc">Допоможемо орендувати або здати квартиру. Складемо договір, перевіримо орендаря та захистимо ваші інтереси.</p>
+        </article>
+
+        <!-- Новобудови -->
+        <article class="service-card" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" stroke="#c9a84c" stroke-width="1.75"/>
+              <polyline points="2 17 12 22 22 17" stroke="#c9a84c" stroke-width="1.75"/>
+              <polyline points="2 12 12 17 22 12" stroke="#c9a84c" stroke-width="1.75"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Новобудови</h3>
+          <p class="service-card__desc">Акредитовані партнери топ-забудовників Києва. Обираємо надійні ЖК та відстежуємо хід будівництва для вас.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" aria-label="Наші показники">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat-item" style="position:relative;">
+          <div class="stat-item__num">500+</div>
+          <div class="stat-item__label">успішних угод</div>
+        </div>
+        <div class="stat-item" style="position:relative;">
+          <div class="stat-item__num">8</div>
+          <div class="stat-item__label">років на ринку нерухомості</div>
+        </div>
+        <div class="stat-item" style="position:relative;">
+          <div class="stat-item__num">97%</div>
+          <div class="stat-item__label">задоволених клієнтів</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section class="listings" id="listings" aria-labelledby="listings-title">
+    <div class="container">
+      <div class="listings__head">
+        <div>
+          <span class="section-label" aria-hidden="true">Актуальні пропозиції</span>
+          <h2 class="section-title" id="listings-title">Поточні об'єкти</h2>
+          <span class="gold-line" aria-hidden="true"></span>
+        </div>
+        <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="listings__link" aria-label="Переглянути всі об'єкти в Telegram">
+          Всі об'єкти
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <div class="listings__grid">
+
+        <!-- Card 1: 1к квартира -->
+        <article class="listing-card" tabindex="0" aria-label="1-кімнатна квартира, Печерськ">
+          <div class="listing-card__img" role="img" aria-label="Зовнішній вигляд будинку на Печерську">
+            <span class="listing-card__badge">Новинка</span>
+            <!-- CSS building illustration -->
+            <svg class="building-svg" width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="40" y="40" width="100" height="160" rx="2" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+              <rect x="55" y="55" width="18" height="18" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="83" y="55" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="111" y="55" width="18" height="18" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="55" y="83" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="83" y="83" width="18" height="18" rx="1" fill="rgba(201,168,76,0.5)"/>
+              <rect x="111" y="83" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="55" y="111" width="18" height="18" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="83" y="111" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="111" y="111" width="18" height="18" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="55" y="139" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="83" y="139" width="18" height="18" rx="1" fill="rgba(201,168,76,0.5)"/>
+              <rect x="111" y="139" width="18" height="18" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="75" y="165" width="30" height="35" rx="1" fill="rgba(201,168,76,0.25)"/>
+            </svg>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__type">1к квартира</div>
+            <h3 class="listing-card__title">Печерськ, вул. Інститутська</h3>
+            <div class="listing-card__meta">
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18"/>
+                  <path d="M9 21V9"/>
+                </svg>
+                42 м²
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                7/14 поверх
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Центр
+              </span>
+            </div>
+            <div class="listing-card__footer">
+              <div>
+                <div class="listing-card__price">від 3 200 000 грн</div>
+                <div class="listing-card__price"><span>≈ 78 000 $/кв.</span></div>
+              </div>
+              <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про квартиру на Інститутській">Деталі →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: 2к квартира -->
+        <article class="listing-card" tabindex="0" aria-label="2-кімнатна квартира, Оболонь">
+          <div class="listing-card__img" role="img" aria-label="Зовнішній вигляд будинку на Оболоні">
+            <span class="listing-card__badge">Топ</span>
+            <svg class="building-svg" width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="20" y="60" width="70" height="140" rx="2" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+              <rect x="95" y="30" width="65" height="170" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <rect x="28" y="70" width="14" height="14" rx="1" fill="rgba(201,168,76,0.4)"/>
+              <rect x="52" y="70" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="28" y="94" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="52" y="94" width="14" height="14" rx="1" fill="rgba(201,168,76,0.4)"/>
+              <rect x="28" y="118" width="14" height="14" rx="1" fill="rgba(201,168,76,0.3)"/>
+              <rect x="52" y="118" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="103" y="40" width="14" height="14" rx="1" fill="rgba(201,168,76,0.5)"/>
+              <rect x="127" y="40" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="103" y="64" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="127" y="64" width="14" height="14" rx="1" fill="rgba(201,168,76,0.4)"/>
+              <rect x="103" y="88" width="14" height="14" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="127" y="88" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="103" y="112" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="127" y="112" width="14" height="14" rx="1" fill="rgba(201,168,76,0.5)"/>
+              <rect x="103" y="136" width="14" height="14" rx="1" fill="rgba(201,168,76,0.3)"/>
+              <rect x="127" y="136" width="14" height="14" rx="1" fill="rgba(201,168,76,0.2)"/>
+            </svg>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__type">2к квартира</div>
+            <h3 class="listing-card__title">Оболонь, просп. Оболонський</h3>
+            <div class="listing-card__meta">
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18"/>
+                  <path d="M9 21V9"/>
+                </svg>
+                68 м²
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                11/22 поверх
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Оболонь
+              </span>
+            </div>
+            <div class="listing-card__footer">
+              <div>
+                <div class="listing-card__price">від 4 800 000 грн</div>
+                <div class="listing-card__price"><span>≈ 70 000 $/кв.</span></div>
+              </div>
+              <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про квартиру на Оболоні">Деталі →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Студія -->
+        <article class="listing-card" tabindex="0" aria-label="Студія, Позняки">
+          <div class="listing-card__img" role="img" aria-label="Зовнішній вигляд будинку на Позняках">
+            <span class="listing-card__badge">Знижка</span>
+            <svg class="building-svg" width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="50" y="20" width="80" height="180" rx="3" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+              <rect x="30" y="80" width="20" height="120" rx="2" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
+              <rect x="130" y="80" width="20" height="120" rx="2" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
+              <rect x="62" y="32" width="16" height="16" rx="1" fill="rgba(201,168,76,0.45)"/>
+              <rect x="86" y="32" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="110" y="32" width="16" height="16" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="62" y="58" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="86" y="58" width="16" height="16" rx="1" fill="rgba(201,168,76,0.5)"/>
+              <rect x="110" y="58" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="62" y="84" width="16" height="16" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="86" y="84" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="110" y="84" width="16" height="16" rx="1" fill="rgba(201,168,76,0.4)"/>
+              <rect x="62" y="110" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="86" y="110" width="16" height="16" rx="1" fill="rgba(201,168,76,0.3)"/>
+              <rect x="110" y="110" width="16" height="16" rx="1" fill="rgba(201,168,76,0.2)"/>
+              <rect x="62" y="136" width="16" height="16" rx="1" fill="rgba(201,168,76,0.4)"/>
+              <rect x="110" y="136" width="16" height="16" rx="1" fill="rgba(201,168,76,0.35)"/>
+              <rect x="78" y="162" width="24" height="38" rx="1" fill="rgba(201,168,76,0.3)"/>
+            </svg>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__type">Студія</div>
+            <h3 class="listing-card__title">Позняки, вул. Бажана</h3>
+            <div class="listing-card__meta">
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18"/>
+                  <path d="M9 21V9"/>
+                </svg>
+                28 м²
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                3/16 поверх
+              </span>
+              <span class="listing-card__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Позняки
+              </span>
+            </div>
+            <div class="listing-card__footer">
+              <div>
+                <div class="listing-card__price">від 1 850 000 грн</div>
+                <div class="listing-card__price"><span>≈ 66 000 $/кв.</span></div>
+              </div>
+              <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про студію на Позняках">Деталі →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTS -->
+  <section class="agents" id="agents" aria-labelledby="agents-title">
+    <div class="container">
+      <div class="agents__head">
+        <span class="section-label" aria-hidden="true">Команда</span>
+        <h2 class="section-title" id="agents-title">Ваші агенти</h2>
+        <span class="gold-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="agents__grid">
+
+        <article class="agent-card" tabindex="0" aria-label="Агент Олена Коваленко">
+          <div class="agent-card__avatar" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="16" r="8" fill="rgba(201,168,76,0.5)" stroke="#c9a84c" stroke-width="1.5"/>
+              <path d="M4 36c0-8.837 7.163-14 16-14s16 5.163 16 14" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="agent-card__info">
+            <div class="agent-card__name">Олена Коваленко</div>
+            <div class="agent-card__spec">Спеціаліст з первинної нерухомості</div>
+            <div class="agent-card__bio">6 років у сфері новобудов. Акредитований партнер ЛСД Груп, Інтергал-Буд, КАН Девелопмент.</div>
+            <div class="agent-card__stats">
+              <div class="agent-stat">
+                <span class="agent-stat__num">240+</span>
+                <span class="agent-stat__label">угод</span>
+              </div>
+              <div class="agent-stat" style="border-left:1px solid var(--border); padding-left:16px;">
+                <span class="agent-stat__num">4.9</span>
+                <span class="agent-stat__label">рейтинг</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="agent-card" tabindex="0" aria-label="Агент Максим Ткаченко">
+          <div class="agent-card__avatar" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="16" r="8" fill="rgba(201,168,76,0.35)" stroke="#c9a84c" stroke-width="1.5"/>
+              <path d="M4 36c0-8.837 7.163-14 16-14s16 5.163 16 14" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="agent-card__info">
+            <div class="agent-card__name">Максим Ткаченко</div>
+            <div class="agent-card__spec">Експерт з вторинного ринку та оренди</div>
+            <div class="agent-card__bio">8 років практики. Глибоке знання ринку Печерська, Шевченківського та Голосіївського районів.</div>
+            <div class="agent-card__stats">
+              <div class="agent-stat">
+                <span class="agent-stat__num">310+</span>
+                <span class="agent-stat__label">угод</span>
+              </div>
+              <div class="agent-stat" style="border-left:1px solid var(--border); padding-left:16px;">
+                <span class="agent-stat__num">4.8</span>
+                <span class="agent-stat__label">рейтинг</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section" id="cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-section__inner">
+        <div class="cta-section__badge" aria-hidden="true">
+          <span class="cta-section__badge-text">Безкоштовно</span>
+        </div>
+
+        <h2 class="cta-section__title" id="cta-title">
+          Залиште заявку —<br/>
+          передзвонимо за <em>10 хвилин</em>
+        </h2>
+
+        <p class="cta-section__sub">
+          Розкажіть про свій запит у Telegram — наш агент відповість одразу та підбере варіанти під ваш бюджет.
+        </p>
+
+        <div class="cta-section__promise" role="list">
+          <div class="promise-item" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Без прихованих комісій
+          </div>
+          <div class="promise-item" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Юридична перевірка в подарунок
+          </div>
+          <div class="promise-item" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Супровід до підписання
+          </div>
+        </div>
+
+        <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" class="cta-section__btn" aria-label="Написати в Telegram для безкоштовної консультації">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Написати в Telegram
+        </a>
+
+        <p class="cta-section__note">Відповідаємо щодня з 9:00 до 20:00</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__logo-block">
+          <div class="footer__logo" aria-label="METRO Нерухомість">
+            <div class="nav__logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 21V10L12 3L21 10V21" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 21V15H15V21" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="nav__logo-text">METRO <span>Нерухомість</span></span>
+          </div>
+          <p class="footer__desc">Преміальне агентство нерухомості Києва. Знайдемо вашу квартиру швидко та безпечно.</p>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Послуги</div>
+          <ul class="footer__links">
+            <li><a href="#services">Купівля квартири</a></li>
+            <li><a href="#services">Продаж нерухомості</a></li>
+            <li><a href="#services">Оренда квартир</a></li>
+            <li><a href="#services">Новобудови Києва</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Контакти</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <a href="https://t.me/znahidkawow" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45); transition:color 220ms ease;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.45)'">@znahidkawow</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            +38 (044) 374-82-15
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Київ, вул. Хрещатик, 1
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2024 METRO Нерухомість. Всі права захищено.</p>
+        <p class="footer__badge">Сайт розроблено <span>WOW Studio</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <a href="#hero" class="scroll-top" aria-label="Прокрутити вгору">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </a>
+
+</body>
+</html>
