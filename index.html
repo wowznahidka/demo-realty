@@ -213,6 +213,7 @@
       content: '';
       position: absolute;
       inset: 0;
+      z-index: 1;
       background-image:
         linear-gradient(rgba(201,168,76,.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(201,168,76,.06) 1px, transparent 1px);
@@ -228,8 +229,21 @@
       right: -200px;
       width: 600px;
       height: 600px;
+      z-index: 1;
       background: radial-gradient(circle, rgba(201,168,76,.18) 0%, transparent 70%);
       pointer-events: none;
+    }
+
+    /* Hero background video */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      z-index: 0;
+      filter: brightness(.5) saturate(1.05);
     }
 
     .hero__inner {
@@ -833,6 +847,100 @@
       margin-top: 2px;
     }
 
+    /* ─── TESTIMONIALS ──────────────────────────────────────────── */
+    .testimonials {
+      padding-block: 96px;
+      background: var(--white);
+    }
+
+    .testimonials__head {
+      margin-bottom: 48px;
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .testimonial-card {
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      padding: 28px 26px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .testimonial-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card__stars svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--gold);
+    }
+
+    .testimonial-card__text {
+      font-size: .9375rem;
+      color: var(--charcoal);
+      line-height: 1.65;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .testimonial-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-card__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .875rem;
+      color: var(--charcoal);
+      flex-shrink: 0;
+    }
+
+    .testimonial-card__name {
+      font-family: var(--font-head);
+      font-size: .875rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .testimonial-card__deal {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
     /* ─── CTA SECTION ───────────────────────────────────────────── */
     .cta-section {
       padding-block: 96px;
@@ -1104,23 +1212,22 @@
 
     /* ─── SECTION SPACING MOBILE ───────────────────────────────── */
     @media (max-width: 540px) {
-      .services, .listings, .agents, .cta-section, .stats {
+      .services, .listings, .agents, .testimonials, .cta-section, .stats {
         padding-block: 64px;
       }
     }
   </style>
 <meta property="og:type" content="website">
-<meta property="og:title" content="WOW Realty — Нерухомість у Києві | Підбір та продаж">
-<meta property="og:description" content="Купівля, продаж, оренда нерухомості у Києві. Безкоштовна консультація в Telegram.">
+<meta property="og:title" content="METRO Нерухомість — Знайдемо вашу квартиру">
+<meta property="og:description" content="METRO Нерухомість — преміальне агентство нерухомості. Купівля, продаж, оренда квартир у Києві. Безкоштовна консультація.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&q=90&auto=format&fit=crop">
 <meta property="og:url" content="https://wowznahidka.github.io/demo-realty/">
 <meta property="og:locale" content="uk_UA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WOW Realty — Нерухомість у Києві | Підбір та продаж">
-<meta name="twitter:description" content="Купівля, продаж, оренда нерухомості у Києві. Безкоштовна консультація в Telegram.">
+<meta name="twitter:title" content="METRO Нерухомість — Знайдемо вашу квартиру">
+<meta name="twitter:description" content="METRO Нерухомість — преміальне агентство нерухомості. Купівля, продаж, оренда квартир у Києві. Безкоштовна консультація.">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=630&q=90&auto=format&fit=crop">
 <link rel="canonical" href="https://wowznahidka.github.io/demo-realty/">
-<meta name="description" content="Сайт для агентства нерухомості: каталог квартир, консультація в Telegram. Від 2 500₴.">
 </head>
 <body>
 
@@ -1142,6 +1249,7 @@
           <li><a href="#services">Послуги</a></li>
           <li><a href="#listings">Об'єкти</a></li>
           <li><a href="#agents">Агенти</a></li>
+          <li><a href="#testimonials">Відгуки</a></li>
           <li><a href="#cta">Контакти</a></li>
         </ul>
 
@@ -1158,6 +1266,9 @@
 
   <!-- HERO -->
   <section class="hero" id="hero" aria-label="Головний банер">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&h=900&q=80&auto=format&fit=crop" aria-hidden="true">
+      <source src="https://videos.pexels.com/video-files/7348146/7348146-hd_1280_720_25fps.mp4" type="video/mp4">
+    </video>
     <div class="container">
       <div class="hero__inner">
         <div class="hero__eyebrow" aria-hidden="true">
@@ -1167,7 +1278,7 @@
 
         <h1 class="hero__title">
           METRO Нерухомість —<br/>
-          знайдемо вашу <em>квартиру</em>
+          знайдемо вашу <em>квартиру</em> швидко і безпечно
         </h1>
 
         <p class="hero__subtitle">
@@ -1352,7 +1463,7 @@
             <div class="listing-card__footer">
               <div>
                 <div class="listing-card__price">від 3 200 000 грн</div>
-                <div class="listing-card__price"><span>≈ 78 000 $/кв.</span></div>
+                <div class="listing-card__price"><span>≈ 78 000 грн/м²</span></div>
               </div>
               <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про квартиру на Інститутській">Деталі →</a>
             </div>
@@ -1394,7 +1505,7 @@
             <div class="listing-card__footer">
               <div>
                 <div class="listing-card__price">від 4 800 000 грн</div>
-                <div class="listing-card__price"><span>≈ 70 000 $/кв.</span></div>
+                <div class="listing-card__price"><span>≈ 70 000 грн/м²</span></div>
               </div>
               <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про квартиру на Оболоні">Деталі →</a>
             </div>
@@ -1436,7 +1547,7 @@
             <div class="listing-card__footer">
               <div>
                 <div class="listing-card__price">від 1 850 000 грн</div>
-                <div class="listing-card__price"><span>≈ 66 000 $/кв.</span></div>
+                <div class="listing-card__price"><span>≈ 66 000 грн/м²</span></div>
               </div>
               <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener" class="listing-card__btn" aria-label="Дізнатися більше про студію на Позняках">Деталі →</a>
             </div>
@@ -1502,6 +1613,75 @@
                 <span class="agent-stat__num">4.8</span>
                 <span class="agent-stat__label">рейтинг</span>
               </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="testimonials__head">
+        <span class="section-label" aria-hidden="true">Відгуки клієнтів</span>
+        <h2 class="section-title" id="testimonials-title">Нам довіряють</h2>
+        <span class="gold-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="testimonials__grid">
+
+        <article class="testimonial-card" tabindex="0">
+          <div class="testimonial-card__stars" aria-label="Оцінка 5 з 5">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+          </div>
+          <p class="testimonial-card__text">«Олена підібрала ЖК під наш бюджет і показала документи забудовника ще до підписання договору. Однушку на Оболоні купили за три тижні — без сюрпризів і доплат».</p>
+          <div class="testimonial-card__footer">
+            <div class="testimonial-card__avatar" aria-hidden="true">ІД</div>
+            <div>
+              <div class="testimonial-card__name">Ірина та Дмитро К.</div>
+              <div class="testimonial-card__deal">Купівля квартири, Оболонь</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card" tabindex="0">
+          <div class="testimonial-card__stars" aria-label="Оцінка 5 з 5">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+          </div>
+          <p class="testimonial-card__text">«Продавали квартиру на Печерську і боялися занизити ціну. Максим зробив оцінку, знайшов покупця за 18 днів, і жодної прихованої комісії — все саме так, як обіцяли на старті».</p>
+          <div class="testimonial-card__footer">
+            <div class="testimonial-card__avatar" aria-hidden="true">СМ</div>
+            <div>
+              <div class="testimonial-card__name">Сергій М.</div>
+              <div class="testimonial-card__deal">Продаж квартири, Печерськ</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card" tabindex="0">
+          <div class="testimonial-card__stars" aria-label="Оцінка 5 з 5">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7.1L12 17.8 5.8 21.3l1.6-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+          </div>
+          <p class="testimonial-card__text">«Здавали квартиру в оренду вперше і хвилювались через договір. Команда перевірила орендаря, оформила всі документи і зняла з нас всю бюрократію. Рекомендую знайомим».</p>
+          <div class="testimonial-card__footer">
+            <div class="testimonial-card__avatar" aria-hidden="true">АЛ</div>
+            <div>
+              <div class="testimonial-card__name">Анна Л.</div>
+              <div class="testimonial-card__deal">Оренда квартири, Позняки</div>
             </div>
           </div>
         </article>
@@ -1616,7 +1796,7 @@
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__copy">© 2024 METRO Нерухомість. Всі права захищено.</p>
+        <p class="footer__copy">© 2026 METRO Нерухомість. Всі права захищено.</p>
         <p class="footer__badge">Сайт розроблено <span>WOW Studio</span></p>
       </div>
     </div>
