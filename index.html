@@ -1217,7 +1217,18 @@
         padding-block: 64px;
       }
     }
-  </style>
+  
+    /* ── mobile burger ── */
+    .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:auto;z-index:200}
+    .nav-burger span{display:block;width:22px;height:2px;background:#fff;border-radius:1px;transition:all .3s}
+    @media(max-width:767px){.nav-burger{display:flex}}
+    .nav-fly{display:none;position:fixed;inset:0;background:#1a1a2e;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+    .nav-fly.open{display:flex}
+    .nav-fly a:not(.fly-cta){font-size:1.7rem;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+    .nav-fly a:not(.fly-cta):hover{opacity:.7}
+    .fly-cta{margin-top:.8rem;padding:14px 36px;background:#7c6fe0;color:#fff;border-radius:8px;font-size:1rem;font-weight:700;text-decoration:none}
+    .nav-fly-close{position:absolute;top:20px;right:24px;font-size:30px;color:#aaa;background:none;border:none;cursor:pointer;line-height:1}
+    </style>
 <meta property="og:type" content="website">
 <meta property="og:title" content="METRO Нерухомість — Знайдемо вашу квартиру">
 <meta property="og:description" content="METRO Нерухомість — преміальне агентство нерухомості. Купівля, продаж, оренда квартир у Києві. Безкоштовна консультація.">
@@ -1255,6 +1266,7 @@
           <li><a href="#cta">Контакти</a></li>
         </ul>
 
+      <button class="nav-burger" aria-label="Відкрити меню" id="nav-burger-btn"><span></span><span></span><span></span></button>
         <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener" class="nav__cta" aria-label="Написати в Telegram">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -1265,6 +1277,18 @@
       </nav>
     </div>
   </header>
+
+  <div class="nav-fly" id="nav-fly" role="dialog" aria-modal="true" aria-label="Мобільне меню">
+    <button class="nav-fly-close" id="nav-fly-close" aria-label="Закрити меню">&#215;</button>
+    <a href="#services">Послуги</a>
+    <a href="#listings">Об'єкти</a>
+    <a href="#agents">Агенти</a>
+    <a href="#testimonials">Відгуки</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta">Контакти</a>
+    <a href="https://telegram.me/znahidkawow" class="fly-cta" target="_blank" rel="noopener">Написати</a>
+  </div>
+
 
   <!-- HERO -->
   <section class="hero" id="hero" aria-label="Головний банер">
@@ -2136,5 +2160,15 @@ fbq('trackCustom', 'DemoView', {demo: 'realty'});
 </script>
 <!-- /wow-demo-pixel -->
 
+  <script>
+  (function(){{
+    var btn=document.getElementById('nav-burger-btn'),fly=document.getElementById('nav-fly'),cls=document.getElementById('nav-fly-close');
+    function open(){{fly.classList.add('open');document.body.style.overflow='hidden'}}
+    function close(){{fly.classList.remove('open');document.body.style.overflow=''}}
+    if(btn)btn.addEventListener('click',open);
+    if(cls)cls.addEventListener('click',close);
+    fly&&fly.querySelectorAll('a').forEach(function(a){{a.addEventListener('click',close)}});
+  }})();
+  </script>
 </body>
 </html>
